@@ -1,5 +1,6 @@
 usuarios = []
 prestamos = []
+bicicletas_prestadas = 0
 
 def registrar_usuario():
     nombre = input("\nIngrese el nombre del usuario: ")
@@ -8,39 +9,30 @@ def registrar_usuario():
     usuarios.append(usuario)
     print("Registro finalizado con éxito!...")
 
-
 def prestar_bicicleta():
+    global bicicletas_prestadas  
+    numero_tarjeta = int(input("Ingresar número tarjeta de usuario: "))
+    usuario = next((u for u in usuarios if u["numero_tarjeta"] == numero_tarjeta), None)
     
-    conti = True
-
-    if conti:
-        bicicleta_disponible = 0
-        numero_tarjeta = int(input("Ingresar número tarjeta de usuario: "))
-        usuario = next((u for u in usuarios if u["numero_tarjeta"] == numero_tarjeta), None)
-        if usuario:
-            bicicleta_disponible += 1
-            origen = input("Ingrese la estación de origen: ")
-            destino = input("Ingrese la estación de destino: ")
-            bicicleta = {"id_bicicleta": bicicleta_disponible, "origen": origen, "destino": destino}
-            prestamos.append((usuario, bicicleta))
-            print(f"{usuario['nombre']} ha tomado la bicicleta {bicicleta_disponible} desde {origen} hacia {destino}")
+    if usuario:
+        bicicletas_prestadas += 1
+        origen = input("Ingrese la estación de origen: ")
+        destino = input("Ingrese la estación de destino: ")
+        bicicleta = {"id_bicicleta": bicicletas_prestadas, "origen": origen, "destino": destino}
+        prestamos.append((usuario, bicicleta))
+        print(f"{usuario['nombre']} ha tomado la bicicleta {bicicletas_prestadas} desde {origen} hacia {destino}")
+    else:
+        print("Usuario no encontrado. No se puede tomar una bicicleta.")
             
-        else:
-            print("Usuario no encontrado. No se puede tomar una bicicleta.")
-            conti= False
-    else:        
-        conti=False
-            
-
 def listar_usuarios():
-    print("Lista de Usuarios:")
+    print("Lista de Usuarios:\n")
     for usuario in usuarios:
         print("/----------------------------------------------------------------------------/")
         print(f"Nombre: {usuario['nombre']}, Número de Tarjeta: {usuario['numero_tarjeta']}")
         print("/----------------------------------------------------------------------------/")
 
 def listar_prestamos():
-    print("Lista de Prestamos:")
+    print("Lista de Prestamos:\n")
     for usuario, bicicleta in prestamos:
         print("/----------------------------------------------------------------------------/")
         print(f"Usuario: {usuario['nombre']}, Bicicleta: {bicicleta['id_bicicleta']}, Origen: {bicicleta['origen']}, Destino: {bicicleta['destino']}")
@@ -48,12 +40,14 @@ def listar_prestamos():
 
 option = True
 while option:
-    print("\nPréstamo de bicicletas:")
+    print("\n/***-------------------------***/")
+    print("Préstamo de bicicletas:\n")
     print("1. Registrar Usuario")
     print("2. Tomar Bicicleta")
     print("3. Lista Usuarios")
     print("4. Lista Prestamos")
-    print("5. Salir\n")
+    print("5. Salir")
+    print("/***-------------------------***/\n")
 
     opcion = input("Seleccione una opción: ")
 
