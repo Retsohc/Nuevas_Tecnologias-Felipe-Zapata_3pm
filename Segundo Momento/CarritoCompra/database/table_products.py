@@ -55,5 +55,3 @@ class ProductDatabase(DatabaseConnector):
         self.cursor.execute("DELETE FROM products WHERE product_id = %s", (producto_id,))
         self.connection.commit()
         print("Producto eliminado correctamente.")
-
-
