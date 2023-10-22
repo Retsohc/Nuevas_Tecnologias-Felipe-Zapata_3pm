@@ -3,21 +3,21 @@ from database.table_users import UserDatabase
 class Authenticator:
 
     def __init__(self):
-        self._user_db = UserDatabase() 
+        self._user_db = UserDatabase()
         self._logged_in = False
         self._current_user = None
 
     @property
     def user_db(self):
-        return self._user_db 
+        return self._user_db
 
     @property
     def logged_in(self):
-        return self._logged_in 
+        return self._logged_in
 
     @property
     def current_user(self):
-        return self._current_user 
+        return self._current_user
 
     def authenticate(self, username, password):
         self.user_db.cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
@@ -31,7 +31,10 @@ class Authenticator:
             print("Nombre de usuario o contraseña incorrectos.")
 
     def register(self, name, email, username, password, registration_date):
-        self.user_db.guardar_usuario(name, email, username, password, registration_date)
+        try:
+            self.user_db.guardar_usuario(name, email, username, password, registration_date)
+        except Exception as e:
+            print(f"Error al registrar usuario: {e}")
 
     def login_or_register(self):
         while not self.logged_in:
