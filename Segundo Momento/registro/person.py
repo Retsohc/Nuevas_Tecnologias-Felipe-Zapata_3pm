@@ -1,76 +1,58 @@
-
 class Persona:
-    
-    def __init__(self, id, nombre, apellido, correo, contrasena):
-        
+
+    def __init__(self, id=None, nombre=None, apellido=None, correo=None, contrasena=None):
         self._id = id
         self._nombre = nombre
         self._apellido = apellido
         self._correo = correo
         self._contrasena = contrasena
-    
-    # Getter and Setter (id)
 
-    @property 
+    @property
     def id(self):
         return self._id
-    
-    @id.setter 
-    def id(self, id):
-        self._id = id
-        
-    # Getter and Setter (nombre)
-        
-    @property 
+
+    @id.setter
+    def id(self, value):
+        self._id = value
+
+    @property
     def nombre(self):
         return self._nombre
-    
-    @nombre.setter 
-    def nombre(self, nombre):
-        self._nombre = nombre
-        
-    # Getter and Setter (apellido)
-        
-    @property 
+
+    @nombre.setter
+    def nombre(self, value):
+        self._nombre = value
+
+    @property
     def apellido(self):
         return self._apellido
-    
-    @apellido.setter 
-    def apellido(self, apellido):
-        self._apellido = apellido      
-        
-    # Getter and Setter (correo)
-        
-    @property 
+
+    @apellido.setter
+    def apellido(self, value):
+        self._apellido = value
+
+    @property
     def correo(self):
         return self._correo
-    
-    @correo.setter 
-    def correo(self, correo):
-        self._correo = correo       
-        
-    # Getter and Setter (contraseña)
-        
-    @property 
+
+    @correo.setter
+    def correo(self, value):
+        self._correo = value
+
+    @property
     def contrasena(self):
         return self._contrasena
-    
-    @contrasena.setter 
-    def contrasena(self, contrasena):
-        self._contrasena = contrasena         
-        
-    # Metodo para registrar
-    
+
+    @contrasena.setter
+    def contrasena(self, value):
+        self._contrasena = value
+
     def registrar(self):
-        
-        self._id = input("Indique el id: ")
-        self._nombre = input("Indique su nombre: ")
-        self._apellido = input("Indique su apellido: ")
-        self._correo = input("Indique su correo: ")
-        self._contrasena = input("Indique la contraseña: ")
-        
+        self.id = input("Indique el id: ")
+        self.nombre = input("Indique su nombre: ")
+        self.apellido = input("Indique su apellido: ")
+        self.correo = input("Indique su correo: ")
+        self.contrasena = input("Indique la contraseña: ")
+
     def ver_registro(self):
-        
-        print(f"\n Id: {self._id} \n Nombre: {self._nombre} \n Apellido {self._apellido} \n Correo: {self.correo} \n")
-        
-    
+        print(f"\nId: {self.id} \nNombre: {self.nombre} \nApellido: {self.apellido} \nCorreo: {self.correo}\n")
